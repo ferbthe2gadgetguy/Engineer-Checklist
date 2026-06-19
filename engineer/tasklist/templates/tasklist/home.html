@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'tasklist/report.css' %}">
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>This should be different</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    
+
+    <table class="info-table">
+        <tr>
+            <th>Activity Start Time and End Time</th>
+            <td class="report_activity">{{ report_form.activity_date }} | {{ report_form.activity_start }} - {{ report_form.activity_end }} </td>
+        </tr>
+        <tr>
+            <th>Reported Problem</th>
+            <!-- <td>Testing</td> -->
+            <td class="report_activity">{{ report_form.problem }}</td>
+        </tr>
+        <tr>
+            <th>Serial Number</th>
+            <td class="report_activity">{{ report_form.serial_number }}</td>
+        </tr>
+        <tr>
+            <th>Product Number</th>
+            <td class="report_activity">{{ report_form.product_number }}</td>
+        </tr>
+        <tr>
+            <th>Machine Description</th>
+           <td class="report_activity">{{ report_form.machine_description }}</td>
+        </tr>
+        <tr>
+            <th>Asset Tag</th>
+            <td class="report_activity">{{ report_form.asset_tag }}</td>
+        </tr>
+    </table>
+
+    <h3>Technical Report</h3>
+
+    <!-- Formset -->
+    <table class="report-table">
+        <thead>
+            <tr>
+                <th>Mins. Consumed</th>
+                <th>Tick Mark</th>
+                <th>Troubleshooting</th>
+                <th>Successful</th>
+                <th>Failed</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+
+        <tbody id="formset-body">
+        {% for form in formset %}
+            <tr class="form-row">
+                <td>{{ form.minutes_consumed }}</td>
+                <td>{{ form.tick_mark }}</td>
+                <td>{{ form.troubleshooting }}</td>
+                <td>{{ form.successful }}</td>
+                <td>{{ form.failed }}</td>
+                <td>{{ form.remarks }}</td>
+
+                <td>
+                <button type="button" class="delete-row button del">−</button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <template id="empty-form">
+        <tr class="form-row">
+        <td>{{ formset.empty_form.minutes_consumed }}</td>
+        <td>{{ formset.empty_form.tick_mark }}</td>
+        <td>{{ formset.empty_form.troubleshooting }}</td>
+        <td>{{ formset.empty_form.successful }}</td>
+        <td>{{ formset.empty_form.failed }}</td>
+        <td>{{ formset.empty_form.remarks }}</td>
+        <td>
+            <button type="button" class="delete-row button del">−</button>
+        </td>
+        </tr>
+    </template>
+
+    <button type="button" id="add-row" class="button add">+</button>
+    <br /> 
+    <br />
+    <table class="info-table">
+        <tr>
+            <th>Parts Installed</th>
+            <td class="report_activity">{{ report_form.parts_installed }}</td>
+        </tr>
+        <tr>
+            <th>Parts Needed</th>
+            <!-- <td>Testing</td> -->
+            <td class="report_activity">{{ report_form.parts_needed }}</td>
+        </tr>
+        <tr>
+            <th>Spare Parts Code</th>
+            <td class="report_activity">{{ report_form.spare_parts }}</td>
+        </tr>
+        <tr>
+            <th>CT Code</th>
+            <td class="report_activity">{{ report_form.ct_code }}</td>
+        </tr>
+        <tr>
+            <th>FID</th>
+           <td class="report_activity">{{ report_form.fid }}</td>
+        </tr>
+        <tr>
+            <th>Remarks</th>
+            <td class="report_activity">{{ report_form.end_remarks }}</td>
+        </tr>
+        <tr>
+            <th>OS Version</th>
+            <td class="report_activity">{{ report_form.os_ver }}</td>
+        </tr>
+    </table>
+
+    <button type="submit" id="save-form" class="button post">Save</button>
+</form>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const addButton = document.getElementById("add-row");
+    const tbody = document.getElementById("formset-body");
+
+    const totalForms = document.querySelector(
+        "#id_form-TOTAL_FORMS"
+    );
+
+    addButton.addEventListener("click", () => {
+
+        console.log("PLUS CLICKED"); //Debugger
+        const formNum = Number(totalForms.value);
+
+        let template =
+            document.getElementById("empty-form").innerHTML;
+
+        template = template.replace(
+            /__prefix__/g,
+            formNum
+        );
+
+        tbody.insertAdjacentHTML(
+            "beforeend",
+            template
+        );
+
+        totalForms.value = formNum + 1;
+        updateEndTime();
+
+    });
+
+    tbody.addEventListener("click", (e) => {
+
+        if (!e.target.classList.contains("delete-row"))
+            return;
+
+        const rows = tbody.querySelectorAll(".form-row");
+
+        if (rows.length <= 1) {
+            alert("At least one row is required.");
+            return;
+        }
+
+        e.target.closest("tr").remove();
+
+        renumberForms();
+
+        updateEndTime();
+    });
+
+    function renumberForms() {
+
+        const rows = tbody.querySelectorAll(".form-row");
+
+        rows.forEach((row, index) => {
+
+            row.querySelectorAll("input, textarea, select")
+                .forEach(field => {
+
+                    field.name =
+                        field.name.replace(
+                            /form-\d+-/,
+                            `form-${index}-`
+                        );
+
+                    field.id =
+                        field.id.replace(
+                            /form-\d+-/,
+                            `form-${index}-`
+                        );
+                });
+        });
+
+        totalForms.value = rows.length;
+    }
+
+    tbody.addEventListener("change", (e) => {
+
+    const target = e.target;
+
+    if (target.matches("input[name$='successful']")) {
+
+        const row = target.closest("tr");
+
+        const failed =
+            row.querySelector("input[name$='failed']");
+
+        if (target.checked && failed) {
+            failed.checked = false;
+        }
+    }
+
+    if (target.matches("input[name$='failed']")) {
+
+        const row = target.closest("tr");
+
+        const success =
+            row.querySelector("input[name$='successful']");
+
+        if (target.checked && success) {
+            success.checked = false;
+        }
+    }
+    });
+    document.addEventListener("input", (e) => {
+
+    if (e.target.id === "id_activity_start") {
+        updateEndTime();
+    }
+
+    if (
+        e.target.matches(
+            "input[name$='minutes_consumed']"
+        )
+    ) {
+        updateEndTime();
+    }
+});
+
+updateEndTime();
+
+});
+
+    function updateEndTime() {
+
+    const startField =
+        document.getElementById("id_activity_start");
+
+    const endField =
+        document.getElementById("id_activity_end");
+
+    if (!startField || !endField || !startField.value) {
+    return;
+    }
+
+    let totalMinutes = 0;
+
+    document
+        .querySelectorAll(
+            "input[name$='minutes_consumed']"
+        )
+        .forEach(input => {
+
+            totalMinutes +=
+                Number(input.value || 0);
+        });
+
+    const [hours, mins] =
+        startField.value.split(":").map(Number);
+
+    const startDate = new Date();
+
+    startDate.setHours(hours, mins, 0, 0);
+
+    startDate.setMinutes(
+        startDate.getMinutes() + totalMinutes
+    );
+
+    const endHours =
+        String(startDate.getHours())
+            .padStart(2, "0");
+
+    const endMins =
+        String(startDate.getMinutes())
+            .padStart(2, "0");
+
+    endField.value =
+        `${endHours}:${endMins}`;
+}
+</script>
+</body>
+</html>

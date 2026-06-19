@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+th {
+    border: 1px solid #d0d0d0;
+    padding: 4px;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #d0d0d0;
+    padding: 4px;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+th {
+    background: #f2f2f2;
+    font-weight: bold;
+}
+
+.report_activity {
+    padding: 2;
+}
+
+textarea::placeholder {
+    text-align: center;
+}
+
+.report-table input[type="text"],
+.report-table textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 18px;
+    text-align: center;
+    margin: 2px 1px;
+    color: white;
+    display: inline-block;
+}
+
+.button:hover {
+    filter: brightness(110%);
+}
+
+.add {
+    background-color: #339933;
+}
+
+.post {
+    background-color: #0066cc;
+}
+
+.del {
+    background-color: #cc0000;
+}
+
+#id_activity_end {
+    background-color: #d9d9d9;
+}
+
