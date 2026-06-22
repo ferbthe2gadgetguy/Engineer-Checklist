@@ -14,7 +14,7 @@
     
     <h1>This should be different</h1>
 
-<form method="post">
+<form method="post" action="{% url 'create_report' %}">
     {% csrf_token %}
     {{ formset.management_form }}
     
@@ -129,7 +129,7 @@
         </tr>
     </table>
 
-    <button type="submit" id="save-form" class="button post">Save</button>
+    <button type="submit" id="save-form" class="button post">Submit</button>
 </form>
 
 

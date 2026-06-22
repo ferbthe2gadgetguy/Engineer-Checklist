@@ -22,22 +22,33 @@ def home(request):
 def create_report(request):
 
     if request.method == "POST":
+        print("POST RECEIVED")
         report_form = ReportForm(request.POST)
         formset = TechnicalStepFormSet(request.POST)
 
         if report_form.is_valid() and formset.is_valid():
+            print("REPORT")
             print(report_form.cleaned_data)
 
-            for form in formset:
-                print(form.cleaned_data)
+            print("STEPS")
 
+            steps = [form.cleaned_data for form in formset]
+
+            return render(
+            request,
+            "tasklist/report.html",
+            {
+                "report": report_form.cleaned_data,
+                "steps": steps,
+            }
+            )
     else:
         report_form = ReportForm()
         formset = TechnicalStepFormSet()
 
     return render(
         request,
-        "home.html",
+        "tasklist/home.html",
         {
             "report_form": report_form,
             "formset": formset,

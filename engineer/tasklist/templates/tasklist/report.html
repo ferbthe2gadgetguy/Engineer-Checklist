@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'tasklist/report.css' %}">
+
+    <title>Document</title>
+</head>
+<body>
+<h1>Technical Report</h1>
+
+<div id="report-content">
+
+<table
+    border="1"
+    cellspacing="0"
+    cellpadding="5"
+    style="border-collapse: collapse; width: 100%;">
+    <tr>
+            <th>Activity Start Time and End Time</th>
+            <td class="report_activity">{{ report.activity_date }} | {{ report.activity_start }} - {{ report.activity_end }} </td>
+        </tr>
+        <tr>
+            <th>Reported Problem</th>
+            <!-- <td>Testing</td> -->
+            <td class="report_activity">{{ report.problem }}</td>
+        </tr>
+        <tr>
+            <th>Serial Number</th>
+            <td class="report_activity">{{ report.serial_number }}</td>
+        </tr>
+        <tr>
+            <th>Product Number</th>
+            <td class="report_activity">{{ report.product_number }}</td>
+        </tr>
+        <tr>
+            <th>Machine Description</th>
+           <td class="report_activity">{{ report.machine_description }}</td>
+        </tr>
+        <tr>
+            <th>Asset Tag</th>
+            <td class="report_activity">{{ report.asset_tag }}</td>
+        </tr>
+</table>
+
+<h3>Technical Report</h3>
+
+<table class="report-table">
+    <thead>
+        <tr>
+            <th>Mins. Consumed</th>
+            <th>Troubleshooting</th>
+            <th>Successful</th>
+            <th>Failed</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for step in steps %}
+        <tr>
+            <td>{{ step.minutes_consumed }}</td>
+            <td>{{ step.troubleshooting }}</td>
+
+            <td>
+                {% if step.successful %}✓{% endif %}
+            </td>
+
+            <td>
+                {% if step.failed %}✓{% endif %}
+            </td>
+
+            <td>{{ step.remarks }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<button type="button" id="copy-report" class="button post">Save to clipboard</button>
+
+<script>
+document.getElementById("copy-report")
+.addEventListener("click", async () => {
+
+    const range = document.createRange();
+    const report = document.getElementById("report-content");
+
+    range.selectNode(report);
+
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    try {
+        document.execCommand("copy");
+        alert("Copied!");
+    } catch (err) {
+        console.error(err);
+        alert("Copy failed");
+    }
+
+    selection.removeAllRanges();
+});
+</script>
+</body>
+</html>
