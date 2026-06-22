@@ -1,0 +1,153 @@
+/* ===== PAGE ===== */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    margin: 0;
+    padding: 30px;
+    background: #f4f4f4;
+}
+
+h1 {
+    font-size: 14px;
+    margin: 0 0 4px 0;
+}
+
+#report-content {
+    width: 100%;
+}
+
+
+/* ===== TABLES ===== */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+th,
+td {
+    border: 1px solid #555;
+    padding: 3px 6px;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+.report-title td {
+    font-size: 13px;
+    font-weight: bold;
+    padding: 3px;
+}
+
+
+/* ===== SUMMARY TABLE ===== */
+
+.summary-table th,
+.summary-table td {
+    height: 20px;
+    padding: 2px 6px;
+}
+
+
+/* ===== TECHNICAL REPORT TITLE ROW ===== */
+
+.report-title {
+    margin-top: -1px;
+}
+
+.report-title td {
+    border: 1px solid #555;
+    background: #ececec;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 4px;
+}
+
+
+/* ===== REPORT TABLE ===== */
+
+.report-table td,
+.report-table th {
+    height: 22px;
+    background: #ececec;
+    text-align: center;
+    font-weight: bold;
+}
+
+.report-table td {
+    text-align: left;
+}
+
+.report-table td:nth-child(1) {
+    width: 70px;
+    text-align: center;
+}
+
+.report-table td:nth-child(3),
+.report-table td:nth-child(4) {
+    text-align: center;
+    width: 70px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.report-table td:nth-child(5) {
+    width: 30%;
+}
+
+.report-table th:nth-child(1),
+.report-table td:nth-child(1) {
+    width: 60px;
+}
+
+.report-table th:nth-child(2),
+.report-table td:nth-child(2) {
+    width: 45%;
+}
+
+.report-table th:nth-child(3),
+.report-table td:nth-child(3),
+.report-table th:nth-child(4),
+.report-table td:nth-child(4) {
+    width: 70px;
+}
+
+.report-table th:nth-child(5),
+.report-table td:nth-child(5) {
+    width: 30%;
+}
+
+.report-container {
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.report-title td {
+    background: #ececec;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* ===== BUTTON ===== */
+
+.button {
+    margin-top: 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 14px;
+    color: white;
+    font-size: 14px;
+}
+
+.post {
+    background: #0066cc;
+}
+
+.post:hover {
+    background: #0052a3;
+}
