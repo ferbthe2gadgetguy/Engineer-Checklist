@@ -75,3 +75,26 @@ textarea::placeholder {
     background-color: #d9d9d9;
 }
 
+
+/* report.html */
+
+.email-report-summary,
+.email-report-details {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+}
+
+.email-report-summary th,
+.email-report-summary td,
+.email-report-details th,
+.email-report-details td {
+    border: 1px solid #d0d0d0;
+    padding: 4px;
+    vertical-align: top;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+

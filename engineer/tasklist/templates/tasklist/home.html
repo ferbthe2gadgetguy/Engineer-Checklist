@@ -14,9 +14,11 @@
     
     <h1>This should be different</h1>
 
+    
 <form method="post" action="{% url 'create_report' %}">
     {% csrf_token %}
     {{ formset.management_form }}
+    
     
 
     <table class="info-table">
