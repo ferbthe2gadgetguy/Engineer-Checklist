@@ -110,6 +110,7 @@ class ReportForm(forms.Form):
     )
 
     parts_installed = forms.CharField(
+        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
             "placeholder": "What was installed?"
@@ -117,6 +118,7 @@ class ReportForm(forms.Form):
     )
 
     parts_needed = forms.CharField(
+        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
             "placeholder": "Which part was needed?"
@@ -124,6 +126,7 @@ class ReportForm(forms.Form):
     )
 
     spare_parts = forms.CharField(
+        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
             "placeholder": "Product's spare parts tag"
@@ -131,6 +134,7 @@ class ReportForm(forms.Form):
     )
 
     ct_code = forms.CharField(
+        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
             "placeholder": "Product's Commodity Tracking"
@@ -138,6 +142,7 @@ class ReportForm(forms.Form):
     )
 
     fid = forms.CharField(
+        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
             "placeholder": "Product's Failure ID"
@@ -145,6 +150,7 @@ class ReportForm(forms.Form):
     )
 
     end_remarks = forms.CharField(
+        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
             "placeholder": "Success?"
@@ -152,6 +158,7 @@ class ReportForm(forms.Form):
     )
 
     os_ver = forms.CharField(
+        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
         })

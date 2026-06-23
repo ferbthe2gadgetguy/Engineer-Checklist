@@ -58,6 +58,7 @@
     <thead>
         <tr>
             <th>Mins. Consumed</th>
+            <th>Tick Mark</th>
             <th>Troubleshooting</th>
             <th>Successful</th>
             <th>Failed</th>
@@ -69,12 +70,13 @@
         {% for step in steps %}
         <tr>
             <td>{{ step.minutes_consumed }}</td>
+            <td>
+                {% if step.tick_mark %}✓{% endif %}
+            </td>
             <td>{{ step.troubleshooting }}</td>
-
             <td>
                 {% if step.successful %}✓{% endif %}
             </td>
-
             <td>
                 {% if step.failed %}✓{% endif %}
             </td>
@@ -83,6 +85,47 @@
         </tr>
         {% endfor %}
     </tbody>
+</table>
+<table
+    border="1"
+    cellspacing="0"
+    cellpadding="5"
+    style="border-collapse: collapse; width: 100%;">
+
+    <tr>
+        <th>Parts Installed</th>
+        <td>{{ report.parts_installed|default:"N/A" }}</td>
+    </tr>
+
+    <tr>
+        <th>Parts Needed</th>
+        <td>{{ report.parts_needed|default:"N/A" }}</td>
+    </tr>
+
+    <tr>
+        <th>Spare Parts Code</th>
+        <td>{{ report.spare_parts|default:"N/A" }}</td>
+    </tr>
+
+    <tr>
+        <th>CT Code</th>
+        <td>{{ report.ct_code|default:"N/A" }}</td>
+    </tr>
+
+    <tr>
+        <th>FID</th>
+        <td>{{ report.fid|default:"N/A" }}</td>
+    </tr>
+
+    <tr>
+        <th>Remarks</th>
+        <td>{{ report.end_remarks|default:"N/A" }}</td>
+    </tr>
+
+    <tr>
+        <th>OS Version</th>
+        <td>{{ report.os_ver|default:"N/A" }}</td>
+    </tr>
 </table>
 </div>
 </div>

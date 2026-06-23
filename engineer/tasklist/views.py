@@ -32,7 +32,11 @@ def create_report(request):
 
             print("STEPS")
 
-            steps = [form.cleaned_data for form in formset]
+            steps = [
+            form.cleaned_data
+            for form in formset
+            if form.cleaned_data and not form.cleaned_data.get("DELETE", False)
+            ]
 
             return render(
             request,
