@@ -5,7 +5,7 @@ body {
     font-size: 11px;
     margin: 0;
     padding: 30px;
-    background: #f4f4f4;
+    background: white;
 }
 
 h1 {
@@ -58,7 +58,7 @@ td {
 
 .report-title td {
     border: 1px solid #555;
-    background: #ececec;
+    background: white;
     text-align: center;
     font-weight: bold;
     font-size: 16px;
@@ -71,8 +71,8 @@ td {
 .report-table td,
 .report-table th {
     height: 22px;
-    background: #ececec;
-    text-align: center;
+    /* background: #ececec; */
+    /* text-align: center; */
     font-weight: bold;
 }
 
@@ -113,7 +113,7 @@ td {
 }
 
 .report-title td {
-    background: #ececec;
+    background: white;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
