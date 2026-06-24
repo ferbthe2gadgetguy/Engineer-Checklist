@@ -138,4 +138,5 @@ textarea::placeholder {
 input:invalid,
 textarea:invalid {
     border: 2px solid red;
-}
+} 
+/* I have gone slightly insane */
