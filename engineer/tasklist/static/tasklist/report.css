@@ -30,7 +30,10 @@ th {
 }
 
 .report_activity {
-    padding: 2;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+
 }
 
 textarea::placeholder {
@@ -98,3 +101,41 @@ textarea::placeholder {
     overflow-wrap: break-word;
 }
 
+.field-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.field-error-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.field-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: red;
+    color: white;
+
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.error-text {
+    color: red;
+    font-size: 0.9rem;
+}
+
+input:invalid,
+textarea:invalid {
+    border: 2px solid red;
+}

@@ -83,6 +83,7 @@ class ReportForm(forms.Form):
     )
 
     serial_number = forms.CharField(
+        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
             "placeholder": "Product's serial number"
@@ -90,6 +91,7 @@ class ReportForm(forms.Form):
     )
 
     product_number = forms.CharField(
+        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
         })
@@ -163,3 +165,17 @@ class ReportForm(forms.Form):
             "rows": 2,
         })
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field_name, field in self.fields.items():
+            field.widget.attrs.update({
+                "class": "form-input"
+            })
+
+            if self.errors.get(field_name):
+                field.widget.attrs.update({
+                    "class": "form-input input-error"
+                })
+

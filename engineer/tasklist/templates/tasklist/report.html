@@ -31,11 +31,11 @@
         </tr>
         <tr>
             <th>Serial Number</th>
-            <td class="report_activity">{{ report.serial_number }}</td>
+            <td class="report_activity">{{ report.serial_number|default:"N/A" }}</td>
         </tr>
         <tr>
             <th>Product Number</th>
-            <td class="report_activity">{{ report.product_number }}</td>
+            <td class="report_activity">{{ report.product_number|default:"N/A" }}</td>
         </tr>
         <tr>
             <th>Machine Description</th>

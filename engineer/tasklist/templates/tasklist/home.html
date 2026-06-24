@@ -15,7 +15,7 @@
     <h1>This should be different</h1>
 
     
-<form method="post" action="{% url 'create_report' %}">
+    <form method="post" action="{% url 'create_report' %}" novalidate>
     {% csrf_token %}
     {{ formset.management_form }}
     
@@ -29,7 +29,29 @@
         <tr>
             <th>Reported Problem</th>
             <!-- <td>Testing</td> -->
-            <td class="report_activity">{{ report_form.problem }}</td>
+    <td class="report_activity">
+
+    <div class="field-container">
+
+        {{ report_form.problem }}
+
+        {% if report_form.problem.errors %}
+            <div class="field-error-wrapper">
+
+                <span class="field-error">
+                    !
+                </span>
+
+                <span class="error-text">
+                    {{ report_form.problem.errors.0 }}
+                </span>
+
+            </div>
+        {% endif %}
+
+    </div>
+
+    </td>
         </tr>
         <tr>
             <th>Serial Number</th>
@@ -38,14 +60,58 @@
         <tr>
             <th>Product Number</th>
             <td class="report_activity">{{ report_form.product_number }}</td>
-        </tr>
-        <tr>
-            <th>Machine Description</th>
-           <td class="report_activity">{{ report_form.machine_description }}</td>
+                </tr>
+                <tr>
+                    <th>Machine Description</th>
+                    <td class="report_activity">
+
+    <div class="field-container">
+
+        {{ report_form.machine_description }}
+
+        {% if report_form.machine_description.errors %}
+            <div class="field-error-wrapper">
+
+                <span class="field-error">
+                    !
+                </span>
+
+                <span class="error-text">
+                    {{ report_form.machine_description.errors.0 }}
+                </span>
+
+            </div>
+        {% endif %}
+
+    </div>
+
+</td>
         </tr>
         <tr>
             <th>Asset Tag</th>
-            <td class="report_activity">{{ report_form.asset_tag }}</td>
+           <td class="report_activity">
+
+    <div class="field-container">
+
+        {{ report_form.asset_tag }}
+
+        {% if report_form.asset_tag.errors %}
+            <div class="field-error-wrapper">
+
+                <span class="field-error">
+                    !
+                </span>
+
+                <span class="error-text">
+                    {{ report_form.asset_tag.errors.0 }}
+                </span>
+
+            </div>
+        {% endif %}
+
+    </div>
+
+</td>
         </tr>
     </table>
 
