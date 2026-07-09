@@ -39,6 +39,9 @@ td {
     font-weight: bold;
     padding: 3px;
 }
+.ticketname {
+    color: #678091;
+}
 
 
 /* ===== SUMMARY TABLE ===== */

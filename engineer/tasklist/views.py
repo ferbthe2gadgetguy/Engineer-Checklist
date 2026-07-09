@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from .forms import TechnicalStepFormSet, ReportForm
 from datetime import datetime
+from .services.freshservice import create_ticket
 
 
 # Note to future me: this tells urls.py, views.home specifically, that you are trying to retrieve this
@@ -38,8 +39,17 @@ def create_report(request):
             if form.cleaned_data and not form.cleaned_data.get("DELETE", False)
             ]
 
+            response = create_ticket(
+        # report=report_form.cleaned_data, # Comment temporarily these two for testings
+        # steps=steps,
+    )
+            if response is not None:
+                print(response.status_code)
+                print(response.text)
+
             return render(
             request,
+
             "tasklist/report.html",
             {
                 "report": report_form.cleaned_data,
@@ -58,3 +68,4 @@ def create_report(request):
             "formset": formset,
         }
     )
+
