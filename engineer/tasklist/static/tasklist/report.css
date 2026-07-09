@@ -139,3 +139,10 @@ textarea::placeholder {
 .input-error {
     border: 2px solid red;
 }
+
+.missing-field {
+    background-color: #ffcccc;
+    border: 2px solid red;
+    font-weight: bold;
+}
+

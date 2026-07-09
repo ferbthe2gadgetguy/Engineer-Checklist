@@ -33,11 +33,22 @@ def create_report(request):
 
             print("STEPS")
 
-            steps = [
-            form.cleaned_data
-            for form in formset
-            if form.cleaned_data and not form.cleaned_data.get("DELETE", False)
-            ]
+            steps = []
+
+            for form in formset:
+                if form.cleaned_data and not form.cleaned_data.get("DELETE", False):
+                    step = form.cleaned_data.copy()
+
+                    step["incomplete"] = (
+                        not step.get("minutes_consumed")
+                        or not step.get("troubleshooting")
+                        or (
+                            not step.get("successful")
+                            and not step.get("failed")
+                        )
+                    )
+
+                    steps.append(step)
 
             response = create_ticket(
         # report=report_form.cleaned_data, # Comment temporarily these two for testings
