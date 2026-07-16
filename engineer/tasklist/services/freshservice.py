@@ -1,5 +1,5 @@
 # import requests
-# url = "https://microbaseincorporatedhelpdesk.freshservice.com/api/v2/tickets"
+# url = f"{settings.FRESHSERVICE_DOMAIN}/api/v2/tickets"
 
 # def create_ticket(report, steps, dry_run=False):
 
@@ -12,7 +12,7 @@
 
 #         response = requests.post(
 #         url,
-#         auth=("API KEY", "X"),
+#         auth=(settings.FRESHSERVICE_API_KEY, "X"),
 #         json=payload
 #     )
         
@@ -28,15 +28,15 @@ import requests
 url = f"{settings.FRESHSERVICE_DOMAIN}/api/v2/tickets"
 
 
-def create_ticket(dry_run=True):
+def create_ticket(dry_run=True): # If only testing, make True. If a new ticket can be submitted, make False.
 
-    payload = {
-        "subject": "Django API Test",
-        "description": "Testing Freshservice connection",
-        "email": "test@example.com",
-        "priority": 1,
-        "status": 2
-    }
+    payload = { # Run this for when it's time to test out integration
+    "subject": "TEST - Django Freshservice API Integration",
+    "description": "This is an API connectivity test. Please ignore.",
+    "email": "your.email@example.com",
+    "priority": 1,
+    "status": 2,
+}
 
     if dry_run:
         print(payload)

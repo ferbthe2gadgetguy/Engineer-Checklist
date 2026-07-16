@@ -30,23 +30,23 @@
         </tr>
         <tr>
             <th>Reported Problem</th>
-            <td class="report_activity">{{ report.problem }}</td>
+            <td class="report_activity copyable">{{ report.problem }}</td>
         </tr>
         <tr>
             <th>Serial Number</th>
-            <td class="report_activity">{{ report.serial_number|default:"N/A" }}</td>
+            <td class="report_activity copyable">{{ report.serial_number|default:"N/A" }}</td>
         </tr>
         <tr>
             <th>Product Number</th>
-            <td class="report_activity">{{ report.product_number|default:"N/A" }}</td>
+            <td class="report_activity copyable">{{ report.product_number|default:"N/A" }}</td>
         </tr>
         <tr>
             <th>Machine Description</th>
-           <td class="report_activity">{{ report.machine_description }}</td>
+           <td class="report_activity copyable">{{ report.machine_description }}</td>
         </tr>
         <tr>
             <th>Asset Tag</th>
-            <td class="report_activity">{{ report.asset_tag }}</td>
+            <td class="report_activity copyable">{{ report.asset_tag }}</td>
         </tr>
 </table>
 
@@ -160,6 +160,45 @@ document.getElementById("copy-report").addEventListener("click", async () => {
         console.error(err);
         alert("Copy failed");
     }
+});
+
+// 👇 Add this here
+document.querySelectorAll("td").forEach(td => {
+    td.style.cursor = "pointer";
+    td.title = "Click to copy";
+
+    td.addEventListener("click", async () => {
+        try {
+            await navigator.clipboard.writeText(td.innerText);
+            console.log("Copied:", td.innerText);
+        } catch (err) {
+            console.error(err);
+        }
+    });
+});
+
+document.querySelectorAll(".report_activity").forEach(td => {
+    td.style.cursor = "pointer";
+    td.title = "Click to copy";
+
+    td.addEventListener("click", async () => {
+        try {
+            await navigator.clipboard.writeText(td.innerText);
+
+            console.log("Copied:", td.innerText);
+
+            // Flash green briefly
+            const original = td.style.backgroundColor;
+            td.style.backgroundColor = "#b7f7b7";
+
+            setTimeout(() => {
+                td.style.backgroundColor = original;
+            }, 250);
+
+        } catch (err) {
+            console.error(err);
+        }
+    });
 });
 </script>
 </body>

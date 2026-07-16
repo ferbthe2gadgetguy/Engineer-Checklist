@@ -145,3 +145,19 @@ td {
 .post:hover {
     background: #0052a3;
 }
+
+.report_activity {
+    cursor: pointer;
+}
+
+.report_activity:hover {
+    background: #fff8c4;
+}
+
+.copyable {
+    cursor: pointer;
+}
+
+.copyable:hover {
+    background-color: #fff8c4;
+}
