@@ -75,19 +75,19 @@
     <tbody>
         {% for step in steps %}
         <tr>
-            <td>{{ step.minutes_consumed }}</td>
-            <td>
+            <td class="report_activity">{{ step.minutes_consumed }}</td>
+            <td class="report_activity">
                 {% if step.tick_mark %}✓{% endif %}
             </td>
-            <td>{{ step.troubleshooting }}</td>
-            <td>
+            <td class="report_activity">{{ step.troubleshooting }}</td>
+            <td class="report_activity">
                 {% if step.successful %}✓{% endif %}
             </td>
-            <td>
+            <td class="report_activity">
                 {% if step.failed %}✓{% endif %}
             </td>
 
-            <td>{{ step.remarks }}</td>
+            <td class="report_activity">{{ step.remarks }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -100,37 +100,37 @@
 
     <tr>
         <th>Parts Installed</th>
-        <td>{{ report.parts_installed|default:"N/A" }}</td>
+        <td class="report_activity">{{ report.parts_installed|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>Parts Needed</th>
-        <td>{{ report.parts_needed|default:"N/A" }}</td>
+        <td class="report_activity">{{ report.parts_needed|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>Spare Parts Code</th>
-        <td>{{ report.spare_parts|default:"N/A" }}</td>
+        <td class="report_activity">{{ report.spare_parts|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>CT Code</th>
-        <td>{{ report.ct_code|default:"N/A" }}</td>
+        <td class="report_activity">{{ report.ct_code|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>FID</th>
-        <td>{{ report.fid|default:"N/A" }}</td>
+        <td class="report_activity">{{ report.fid|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>Remarks</th>
-        <td>{{ report.end_remarks|default:"N/A" }}</td>
+        <td class="report_activity">{{ report.end_remarks|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>OS Version</th>
-        <td>{{ report.os_ver|default:"N/A" }}</td>
+        <td class="report_activity">{{ report.os_ver|default:"N/A" }}</td>
     </tr>
 </table>
 </div>
