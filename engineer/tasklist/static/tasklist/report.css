@@ -146,3 +146,14 @@ textarea::placeholder {
     font-weight: bold;
 }
 
+.drag-handle {
+    cursor: grab;
+    width: 30px;
+    text-align: center;
+    user-select: none;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+

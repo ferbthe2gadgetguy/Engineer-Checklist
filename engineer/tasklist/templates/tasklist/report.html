@@ -75,19 +75,19 @@
     <tbody>
         {% for step in steps %}
         <tr>
-            <td class="report_activity">{{ step.minutes_consumed }}</td>
-            <td class="report_activity">
+           <td class="report_activity copyable">{{ step.minutes_consumed }}</td>
+           <td class="report_activity">
                 {% if step.tick_mark %}✓{% endif %}
             </td>
-            <td class="report_activity">{{ step.troubleshooting }}</td>
-            <td class="report_activity">
+           <td class="report_activity copyable">{{ step.troubleshooting }}</td>
+           <td class="report_activity">
                 {% if step.successful %}✓{% endif %}
             </td>
-            <td class="report_activity">
+           <td class="report_activity">
                 {% if step.failed %}✓{% endif %}
             </td>
 
-            <td class="report_activity">{{ step.remarks }}</td>
+           <td class="report_activity copyable">{{ step.remarks }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -100,37 +100,37 @@
 
     <tr>
         <th>Parts Installed</th>
-        <td class="report_activity">{{ report.parts_installed|default:"N/A" }}</td>
+       <td class="report_activity copyable">{{ report.parts_installed|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>Parts Needed</th>
-        <td class="report_activity">{{ report.parts_needed|default:"N/A" }}</td>
+       <td class="report_activity copyable">{{ report.parts_needed|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>Spare Parts Code</th>
-        <td class="report_activity">{{ report.spare_parts|default:"N/A" }}</td>
+       <td class="report_activity copyable">{{ report.spare_parts|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>CT Code</th>
-        <td class="report_activity">{{ report.ct_code|default:"N/A" }}</td>
+       <td class="report_activity copyable">{{ report.ct_code|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>FID</th>
-        <td class="report_activity">{{ report.fid|default:"N/A" }}</td>
+       <td class="report_activity copyable">{{ report.fid|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>Remarks</th>
-        <td class="report_activity">{{ report.end_remarks|default:"N/A" }}</td>
+       <td class="report_activity copyable">{{ report.end_remarks|default:"N/A" }}</td>
     </tr>
 
     <tr>
         <th>OS Version</th>
-        <td class="report_activity">{{ report.os_ver|default:"N/A" }}</td>
+       <td class="report_activity copyable">{{ report.os_ver|default:"N/A" }}</td>
     </tr>
 </table>
 </div>
@@ -177,27 +177,18 @@ document.querySelectorAll("td").forEach(td => {
     });
 });
 
-document.querySelectorAll(".report_activity").forEach(td => {
+document.querySelectorAll(".copyable").forEach(td => {
     td.style.cursor = "pointer";
     td.title = "Click to copy";
 
     td.addEventListener("click", async () => {
-        try {
-            await navigator.clipboard.writeText(td.innerText);
+        await navigator.clipboard.writeText(td.innerText);
 
-            console.log("Copied:", td.innerText);
+        td.classList.add("copied");
 
-            // Flash green briefly
-            const original = td.style.backgroundColor;
-            td.style.backgroundColor = "#b7f7b7";
-
-            setTimeout(() => {
-                td.style.backgroundColor = original;
-            }, 250);
-
-        } catch (err) {
-            console.error(err);
-        }
+        setTimeout(() => {
+            td.classList.remove("copied");
+        }, 250);
     });
 });
 </script>

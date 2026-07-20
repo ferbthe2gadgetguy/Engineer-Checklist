@@ -121,35 +121,40 @@
     <table class="report-table">
         <thead>
             <tr>
+                <th></th>
                 <th>Mins. Consumed</th>
                 <th>Tick Mark</th>
                 <th>Troubleshooting</th>
                 <th>Successful</th>
                 <th>Failed</th>
                 <th>Remarks</th>
+                <th></th>
             </tr>
         </thead>
 
         <tbody id="formset-body">
         {% for form in formset %}
-            <tr class="form-row">
-                <td>{{ form.minutes_consumed }}</td>
-                <td>{{ form.tick_mark }}</td>
-                <td>{{ form.troubleshooting }}</td>
-                <td>{{ form.successful }}</td>
-                <td>{{ form.failed }}</td>
-                <td>{{ form.remarks }}</td>
+        <tr class="form-row">
+            <td class="drag-handle">⠿</td>
+            <td>{{ form.minutes_consumed }}</td>
+            <td>{{ form.tick_mark }}</td>
+            <td>{{ form.troubleshooting }}</td>
+            <td>{{ form.successful }}</td>
+            <td>{{ form.failed }}</td>
+            <td>{{ form.remarks }}</td>
 
-                <td>
+            <td>
                 <button type="button" class="delete-row button del">−</button>
-                </td>
-            </tr>
+            </td>
+        </tr>
         {% endfor %}
         </tbody>
     </table>
 
     <template id="empty-form">
         <tr class="form-row">
+        <td class="drag-handle">⠿</td>
+
         <td>{{ formset.empty_form.minutes_consumed }}</td>
         <td>{{ formset.empty_form.tick_mark }}</td>
         <td>{{ formset.empty_form.troubleshooting }}</td>
@@ -159,7 +164,7 @@
         <td>
             <button type="button" class="delete-row button del">−</button>
         </td>
-        </tr>
+    </tr>
     </template>
 
     <button type="button" id="add-row" class="button add">+</button>
@@ -198,6 +203,8 @@
     </table>
 
     <button type="submit" id="save-form" class="button post">Submit</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
 </form>
 
 
@@ -206,6 +213,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const addButton = document.getElementById("add-row");
     const tbody = document.getElementById("formset-body");
+
+    new Sortable(tbody, {
+    animation: 150,
+    handle: ".drag-handle",
+
+    onEnd() {
+        renumberForms();
+        updateEndTime();
+    }
+});
+
+    
 
     const totalForms = document.querySelector(
         "#id_form-TOTAL_FORMS"
@@ -233,6 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateEndTime();
 
     });
+    
 
     tbody.addEventListener("click", (e) => {
 
