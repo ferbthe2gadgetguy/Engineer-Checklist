@@ -86,7 +86,7 @@ class ReportForm(forms.Form):
         required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
-            "placeholder": "Product's serial number"
+            "placeholder": "Serial number"
         })
     )
 
@@ -94,6 +94,7 @@ class ReportForm(forms.Form):
         required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
+            "placeholder": "Product number"
         })
     )
 
@@ -152,7 +153,6 @@ class ReportForm(forms.Form):
     )
 
     end_remarks = forms.CharField(
-        required=False,
         widget=forms.Textarea(attrs={
             "rows": 2,
             "placeholder": "Success?"

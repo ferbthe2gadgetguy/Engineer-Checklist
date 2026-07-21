@@ -126,52 +126,54 @@
     <!-- Parts -->
     <!-- ========================= -->
 
+    {% if report.spare_parts %}
     <tr>
         <th>Parts Installed</th>
         <td colspan="5" class = "copyable">
             {{ report.parts_installed|default:"N/A" }}
         </td>
     </tr>
+    {% endif %}
 
+    {% if report.parts_needed %}
     <tr>
         <th>Parts Needed</th>
-        <td colspan="5" class = "copyable">
-            {{ report.parts_needed|default:"N/A" }}
-        </td>
+        <td colspan="5" class="copyable">{{ report.parts_needed }}</td>
     </tr>
+    {% endif %}
 
+    {% if report.spare_parts %}
     <tr>
         <th>Spare Parts Code</th>
-        <td colspan="5" class = "copyable">
-            {{ report.spare_parts|default:"N/A" }}
-        </td>
+        <td colspan="5" class="copyable">{{ report.spare_parts }}</td>
     </tr>
+    {% endif %}
 
+    {% if report.ct_code %}
     <tr>
         <th>CT Code</th>
-        <td colspan="5" class = "copyable">
-            {{ report.ct_code|default:"N/A" }}
-        </td>
+        <td colspan="5" class="copyable">{{ report.ct_code }}</td>
     </tr>
+    {% endif %}
 
+    {% if report.fid %}
     <tr>
         <th>FID</th>
-        <td colspan="5" class = "copyable">
-            {{ report.fid|default:"N/A" }}
-        </td>
+        <td colspan="5" class="copyable">{{ report.fid }}</td>
     </tr>
+    {% endif %}
+
+    {% if report.os_ver %}
+    <tr>
+        <th>OS Version</th>
+        <td colspan="5" class="copyable">{{ report.os_ver }}</td>
+    </tr>
+    {% endif %}
 
     <tr>
         <th>Remarks</th>
-        <td colspan="5" class = "copyable">
-            {{ report.end_remarks|default:"N/A" }}
-        </td>
-    </tr>
-
-    <tr>
-        <th>OS Version</th>
-        <td colspan="5" class = "copyable">
-            {{ report.os_ver|default:"N/A" }}
+        <td colspan="5" class="copyable">
+            {{ report.end_remarks }}
         </td>
     </tr>
 
@@ -246,7 +248,7 @@ document.getElementById("send-freshservice")
 
         if (data.success) {
 
-            alert("Ticket created!");
+            alert("Reply added to Freshservice!");
 
             window.open(data.ticket_url, "_blank");
 

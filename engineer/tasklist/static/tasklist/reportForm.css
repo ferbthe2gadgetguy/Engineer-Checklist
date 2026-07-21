@@ -162,6 +162,7 @@ td {
 
 .copyable {
     cursor: pointer;
+    text-align: center;
 }
 
 .copyable:hover {
