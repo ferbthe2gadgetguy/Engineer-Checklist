@@ -138,8 +138,14 @@ td {
     font-size: 14px;
 }
 
+/* ===== COPYABLES ===== */
+
 .post {
     background: #0066cc;
+}
+
+.launch {
+    background: #339933;
 }
 
 .post:hover {

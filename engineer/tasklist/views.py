@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse
 from .forms import TechnicalStepFormSet, ReportForm
 from datetime import datetime
 from .services.freshservice import create_ticket
+from django.http import JsonResponse
+from django.conf import settings
 
 
 # Note to future me: this tells urls.py, views.home specifically, that you are trying to retrieve this
@@ -49,14 +51,16 @@ def create_report(request):
                     )
 
                     steps.append(step)
-
-            response = create_ticket(
-        # report=report_form.cleaned_data, # Comment temporarily these two for testings
-        # steps=steps,
-    )
-            if response is not None:
-                print(response.status_code)
-                print(response.text)
+    #           KEEPING THIS HERE AS FAILSAFE. DO NOT UNCOMMENT.
+    #           It makes home.html create a ticket.
+    #         response = create_ticket(
+    #     # report=report_form.cleaned_data, # Comment temporarily these two for testings
+    #     # steps=steps,
+    # )
+    #         if response is not None:
+    #             print(response.status_code)
+    #             print(response.text)
+    
 
             return render(
             request,
@@ -80,3 +84,50 @@ def create_report(request):
         }
     )
 
+def send_to_freshservice(request):
+
+    if request.method != "POST":
+        return JsonResponse(
+            {"success": False},
+            status=405
+        )
+
+
+    try:
+
+        response = create_ticket(
+            report=request.session["report"],
+            steps=request.session["steps"]
+            # ADD WHEN YOU ARE READY TO ADD VARIABLES
+        )
+
+
+        if response.status_code == 201:
+
+            ticket = response.json()["ticket"]
+
+            ticket_id = ticket["id"]
+
+
+            return JsonResponse(
+                {
+                    "success": True,
+                    "ticket_url":
+                    f"{settings.FRESHSERVICE_DOMAIN}/a/tickets/{ticket_id}"
+                }
+            )
+
+
+        return JsonResponse(
+            {"success": False}
+        )
+
+
+    except Exception as e:
+
+        print(e)
+
+        return JsonResponse(
+            {"success": False}
+        ) 
+    

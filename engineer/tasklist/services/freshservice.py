@@ -1,41 +1,40 @@
-# import requests
-# url = f"{settings.FRESHSERVICE_DOMAIN}/api/v2/tickets"
-
-# def create_ticket(report, steps, dry_run=False):
-
-#     if dry_run:
-#         print("=== PAYLOAD ===")
-#         subject = f"Service Report - {report['machine_description']}"
-#         f"{report['problem']}"
-#         # These two above are just for testings
-#         return None
-
-#         response = requests.post(
-#         url,
-#         auth=(settings.FRESHSERVICE_API_KEY, "X"),
-#         json=payload
-#     )
-        
-#         response.raise_for_status()
-
-#     return response
-
 # For testing purposes
 from django.conf import settings
+from django.template.loader import render_to_string
 import requests
 
+def build_report_html(report, steps, ticket=None): # In the future, put this above testing purposes
 
-url = f"{settings.FRESHSERVICE_DOMAIN}/api/v2/tickets"
+    return render_to_string(
+        "tasklist/report_reply.html",
+        {
+            "report": report,
+            "steps": steps,
+            "ticket": ticket,
+        }
+    )
+
+url = f"{settings.FRESHSERVICE_DOMAIN}/api/v2/tickets" # Reminder that this creates tickets, not replies to them
 
 
-def create_ticket(dry_run=True): # If only testing, make True. If a new ticket can be submitted, make False.
+def create_test_ticket(dry_run=True): # If only testing, make True. If a new ticket can be submitted, make False.
 
+    
     payload = { # Run this for when it's time to test out integration
     "subject": "TEST - Django Freshservice API Integration",
     "description": "This is an API connectivity test. Please ignore.",
     "email": "your.email@example.com",
     "priority": 1,
     "status": 2,
+
+    # payload = {
+    #     "subject": f"Service Report - {report['machine_description']}",
+    #     "description": build_description(report, steps),
+    #     "email": report["email"],
+    #     "priority": 1,
+    #     "status": 2,
+    # } # Save for later
+
 }
 
     if dry_run:
@@ -55,3 +54,30 @@ def create_ticket(dry_run=True): # If only testing, make True. If a new ticket c
     response.raise_for_status()
 
     return response
+
+
+
+def reply_to_ticket(ticket_id, report, steps, dry_run=True):
+
+    html = build_report_html(
+        report,
+        steps,
+    )
+
+    payload = {
+        "body": html
+    }
+
+    url = (
+        f"{settings.FRESHSERVICE_DOMAIN}"
+        f"/api/v2/tickets/{ticket_id}/reply"
+    )
+
+    if dry_run:
+        print("=== URL ===")
+        print(url)
+
+        print("\n=== PAYLOAD ===")
+        print(payload)
+
+        return payload
