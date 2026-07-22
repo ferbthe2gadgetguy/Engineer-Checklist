@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="{% static 'tasklist/reportForm.css' %}">
+    <link rel="stylesheet" href="{% static 'tasklist/cs/reportForm.css' %}">
 
     <title>Document</title>
 </head>
@@ -35,14 +35,14 @@
     <tr>
         <th>FS ID</th>
         <td colspan="5" class = "copyable">
-            {{ ticket.id }}
+            {{ report.ticket_id }}
         </td>
     </tr>
 
     <tr>
         <th>Serial Number</th>
         <td colspan="5" class = "copyable">
-            {{ ticket.serial_number }}
+            {{ report.serial_number }}
         </td>
     </tr>
 

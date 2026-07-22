@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from .forms import TechnicalStepFormSet, ReportForm
 from datetime import datetime
-from .services.freshservice import create_test_ticket
+from .services.freshservice import reply_to_ticket
 from django.http import JsonResponse
 from django.conf import settings
 
@@ -95,7 +95,7 @@ def send_to_freshservice(request):
 
     try:
 
-        response = create_test_ticket(
+        response = reply_to_ticket(
             report=request.session["report"],
             steps=request.session["steps"]
             # ADD WHEN YOU ARE READY TO ADD VARIABLES

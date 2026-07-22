@@ -231,3 +231,9 @@ textarea::placeholder {
 
     cursor:pointer;
 }
+
+.helptext {
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 0.25rem;
+}

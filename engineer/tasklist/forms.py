@@ -82,6 +82,16 @@ class ReportForm(forms.Form):
         })
     )
 
+    ticket_id = forms.CharField(
+    max_length=20,
+    widget=forms.TextInput(
+        attrs={
+           "placeholder": "(e.g. 12345)"
+            #"\nFound in the Freshservice URL after /a/tickets/."
+        }
+    )
+)
+
     serial_number = forms.CharField(
         required=False,
         widget=forms.Textarea(attrs={
@@ -155,7 +165,7 @@ class ReportForm(forms.Form):
     end_remarks = forms.CharField(
         widget=forms.Textarea(attrs={
             "rows": 2,
-            "placeholder": "Success?"
+            "placeholder": "Mark x if no ?"
         })
     )
 
