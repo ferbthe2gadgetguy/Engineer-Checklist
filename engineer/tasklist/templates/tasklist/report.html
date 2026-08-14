@@ -186,28 +186,68 @@
 
 <script>
 document.getElementById("copy-report").addEventListener("click", async () => {
+
     const report = document.getElementById("report-content");
 
+    // Get the table HTML
+    const table = report.querySelector("table");
+
+    // Make a clean, Excel-friendly version of the table
+    const html = `
+        <html>
+        <head>
+            <meta charset="UTF-8">
+        </head>
+
+        <body>
+
+            <table
+                style="
+                    border-collapse: collapse;
+                    width: 100%;
+                    font-family: Arial, sans-serif;
+                "
+            >
+                ${table.innerHTML}
+            </table>
+
+        </body>
+        </html>
+    `;
+
+    // Plain text fallback
+    const text = report.innerText;
+
     try {
+
         await navigator.clipboard.write([
             new ClipboardItem({
+
                 "text/html": new Blob(
-                    [report.innerHTML],
+                    [html],
                     { type: "text/html" }
                 ),
+
                 "text/plain": new Blob(
-                    [report.innerText],
+                    [text],
                     { type: "text/plain" }
                 )
+
             })
         ]);
 
-        alert("Copied!");
+        alert("Copied! You can now paste it into Excel.");
+
     } catch (err) {
+
         console.error(err);
-        alert("Copy failed");
+
+        alert("Copy failed.");
+
     }
+
 });
+
 
 document.querySelectorAll(".copyable").forEach(td => {
     td.style.cursor = "pointer";
