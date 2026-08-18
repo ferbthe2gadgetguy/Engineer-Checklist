@@ -90,7 +90,7 @@
     <!-- ========================= -->
 
     <tr>
-        <th>Mins</th>
+        <th>Mins. Consumed</th>
         <th>Tick</th>
         <th>Troubleshooting</th>
         <th>Success</th>
@@ -101,23 +101,23 @@
     {% for step in steps %}
     <tr>
 
-        <td class = "copyable">{{ step.minutes_consumed }}</td>
+        <td class = "copyable checkmark">{{ step.minutes_consumed }}</td>
 
-        <td>
+        <td class = "checkmark">
             {% if step.tick_mark %}✓{% endif %}
         </td>
 
         <td class = "copyable">{{ step.troubleshooting }}</td>
 
-        <td>
+        <td class = "checkmark">
             {% if step.successful %}✓{% endif %}
         </td>
 
-        <td>
+        <td class = "checkmark">
             {% if step.failed %}✓{% endif %}
         </td>
 
-        <td class = "copyable">{{ step.remarks }}</td>
+        <td class = "copyable checkmark">{{ step.remarks }}</td>
 
     </tr>
     {% endfor %}

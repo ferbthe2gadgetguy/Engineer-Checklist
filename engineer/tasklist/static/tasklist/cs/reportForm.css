@@ -162,9 +162,13 @@ td {
 
 .copyable {
     cursor: pointer;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .copyable:hover {
     background-color: #fff8c4;
+}
+
+.checkmark {
+    text-align: center;
 }
