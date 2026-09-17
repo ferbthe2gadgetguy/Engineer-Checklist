@@ -183,6 +183,35 @@
 <button type="button" id="copy-report" class="button post">Save to clipboard</button>
 <br />
 <button type="button" id="send-freshservice" class="button launch">Send to Freshservice</button>
+<br />
+<button type="button" id="give-summary" class="button summary">Summarize</button>
+
+ 
+<!-- Summary Popup -->
+<div id="summary-popup" class="summary-popup">
+    <div class="summary-box">
+
+        <div class="summary-header">
+            <strong>Technical Summary</strong>
+            <button type="button" id="close-summary">×</button>
+        </div>
+
+        <div class="summary-content">
+            {% for step in steps %}
+                <div class="summary-step">
+                    {{ step.troubleshooting }}
+                    {% if step.successful %}
+                        (Successful{% if step.remarks %} - {{ step.remarks }}{% endif %}, {{ step.minutes_consumed }} Mins)
+                    {% else %}
+                        (Failed{% if step.remarks %} - {{ step.remarks }}{% endif %}, {{ step.minutes_consumed }} Mins)
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
 
 <script>
 document.getElementById("copy-report").addEventListener("click", async () => {
@@ -312,6 +341,22 @@ document.getElementById("send-freshservice")
     }
 
 });
+
+document.getElementById("give-summary").addEventListener("click", () => {
+    document.getElementById("summary-popup").style.display = "flex";
+});
+
+document.getElementById("close-summary").addEventListener("click", () => {
+    document.getElementById("summary-popup").style.display = "none";
+});
+
+/* Also close if you click outside the gray box */
+document.getElementById("summary-popup").addEventListener("click", (event) => {
+    if (event.target.id === "summary-popup") {
+        event.target.style.display = "none";
+    }
+});
+
 </script>
 </body>
 </html>

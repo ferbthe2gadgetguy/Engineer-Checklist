@@ -148,6 +148,10 @@ td {
     background: #339933;
 }
 
+.summary {
+    background: #ffee34;
+}
+
 .post:hover {
     background: #0052a3;
 }
@@ -171,4 +175,80 @@ td {
 
 .checkmark {
     text-align: center;
+}
+
+
+/* ========================= */
+/* Summary Popup */
+/* ========================= */
+
+.summary-popup {
+    display: none;
+
+    position: fixed;
+    z-index: 9999;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.summary-box {
+    width: 500px;
+    max-width: 90%;
+
+    max-height: 80vh;
+
+    background: #eeeeee;
+    color: #222;
+
+    border: 1px solid #aaa;
+    border-radius: 8px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+
+    overflow: hidden;
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 15px;
+
+    background: #d6d6d6;
+    border-bottom: 1px solid #aaa;
+}
+
+#close-summary {
+    border: none;
+    background: none;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+#close-summary:hover {
+    color: #900;
+}
+
+.summary-content {
+    padding: 15px;
+
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.summary-step {
+    margin-bottom: 8px;
 }
