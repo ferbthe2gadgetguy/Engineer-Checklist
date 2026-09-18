@@ -95,7 +95,7 @@ const templates = {
             {
                 minutes_consumed: 2,
                 tick_mark: true,
-                troubleshooting: "Assembled battery",
+                troubleshooting: "Assembled Battery",
                 successful: true,
                 remarks: ""
             },
@@ -239,7 +239,7 @@ const templates = {
             {
                 minutes_consumed: 2,
                 tick_mark: true,
-                troubleshooting: "Removed old battery",
+                troubleshooting: "Disassembled old Battery",
                 successful: true,
                 remarks: ""
             },
@@ -247,7 +247,7 @@ const templates = {
             {
                 minutes_consumed: 2,
                 tick_mark: true,
-                troubleshooting: "Installed new battery",
+                troubleshooting: "Assembled new Battery",
                 successful: true,
                 remarks: ""
             },
@@ -273,7 +273,7 @@ const templates = {
                 tick_mark: true,
                 troubleshooting: "Run Diagnostic Tool (Battery Test)",
                 successful: true,
-                remarks: ""
+                remarks: "PASS ID:"
             },
 
             {
@@ -281,7 +281,7 @@ const templates = {
                 tick_mark: true,
                 troubleshooting: "Run Diagnostic Tool (Keyboard Test)",
                 successful: true,
-                remarks: ""
+                remarks: "PASS ID:"
             },
 
             {
@@ -289,7 +289,7 @@ const templates = {
                 tick_mark: true,
                 troubleshooting: "Run Diagnostic Tool (System Fast Test): \nProcessor \nBattery \nSSD \nWireless Module \nSystem Board",
                 successful: true,
-                remarks: ""
+                remarks: "PASS ID:"
             },
 
             {
@@ -318,7 +318,239 @@ const templates = {
 
         ]
 
-    }
+    },
+
+    isokey: {
+
+        fields: {
+
+            problem: "Device wont boot",
+            serial_number: "",
+            machine_description: "HP Laptop 15s",
+            product_number: "",
+            asset_tag: "",
+            parts_installed: "",
+            parts_needed: "",
+            spare_parts: "",
+            ct_code: "",
+            fid: "",
+            os_ver: "",
+            end_remarks: "For Part Request - Top Cover with Keyboard",
+        },
+
+        rows: [
+        
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Checked and Verified Unit",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Verified Reported Problem",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Power On",
+                failed: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Power On (Connected to Type C Charger Ports 1 and 2)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Disassembled Base Enclosure",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Separated Top Cover with Keyboard from Display Assembly",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: 'Unplug Top Cover with keyboard "ribbon cable"',
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Power On using Type-C Docking Station",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Power Off",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Disassembled all components from Top Cover with Keyboard (Reported Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Power On (Spare Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Power Off (Spare Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Disassembled Base Enclosure (Spare Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Disassembled Battery (Spare Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Isolated System Board (Spare Unit) to Reported Unit",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Isolated System Board (Reported Unit) to Spare Unit",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Assembled all components (Spare Unit)",
+                successful: true,
+                remarks: ""
+            },  
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Assembled Battery (Spare Unit)",
+                successful: true,
+                remarks: ""
+            }, 
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Assembled Base Enclosure (Spare Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Power On (Spare Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Power Off (Spare Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Assembled all components from Top Cover with Keyboard (Reported Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Assembled Battery (Reported Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Assembled Base Enclosure (Reported Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Power Off (Reported Unit)",
+                successful: true,
+                remarks: ""
+            },
+
+            {
+                minutes_consumed: 2,
+                tick_mark: true,
+                troubleshooting: "Turnover to OSS",
+                successful: true,
+                remarks: ""
+            },
+
+        ]
+
+    },
 
 };
 
